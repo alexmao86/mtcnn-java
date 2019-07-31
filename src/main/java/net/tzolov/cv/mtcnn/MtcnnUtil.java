@@ -15,6 +15,11 @@
  */
 package net.tzolov.cv.mtcnn;
 
+import static org.nd4j.linalg.indexing.NDArrayIndex.all;
+import static org.nd4j.linalg.indexing.NDArrayIndex.indices;
+import static org.nd4j.linalg.indexing.NDArrayIndex.interval;
+import static org.nd4j.linalg.indexing.NDArrayIndex.point;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -32,22 +37,16 @@ import java.util.function.Predicate;
 
 import javax.imageio.ImageIO;
 
-import org.nd4j.linalg.api.buffer.DataBuffer;
+import org.nd4j.linalg.api.buffer.DataType;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.indexing.INDArrayIndex;
 import org.nd4j.linalg.indexing.SpecifiedIndex;
 import org.nd4j.linalg.ops.transforms.Transforms;
 import org.nd4j.linalg.util.ArrayUtil;
-import org.tensorflow.Tensor;
-
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
-
-import static org.nd4j.linalg.indexing.NDArrayIndex.all;
-import static org.nd4j.linalg.indexing.NDArrayIndex.indices;
-import static org.nd4j.linalg.indexing.NDArrayIndex.interval;
-import static org.nd4j.linalg.indexing.NDArrayIndex.point;
+import org.tensorflow.Tensor;
 
 /**
  * @author Christian Tzolov
@@ -445,7 +444,7 @@ public class MtcnnUtil {
 			}
 		}
 
-		return CollectionUtils.isEmpty(indexes) ? Nd4j.empty(DataBuffer.Type.FLOAT) : Nd4j.create(indexes);
+		return CollectionUtils.isEmpty(indexes) ? Nd4j.empty(DataType.FLOAT) : Nd4j.create(indexes);
 	}
 
 	/**
